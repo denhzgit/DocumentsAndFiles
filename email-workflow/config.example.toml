@@ -1,0 +1,24 @@
+# Copy to config.toml (git-ignored) and fill in. NO PASSWORDS IN THIS FILE.
+# Host and username come from Thunderbird's prefs.js: run scripts/00_inspect_windows.ps1.
+
+[imap]
+host = "mail.example.com"      # mail.server.serverN.hostname from prefs.js
+port = 993
+username = "bart@elbertse.info"
+# The IMAP password is read from Windows Credential Manager via the `keyring`
+# package. Store it once, yourself, in a terminal Claude is not watching:
+#   python -c "import keyring,getpass; keyring.set_password('bart-imap','bart@elbertse.info',getpass.getpass())"
+keyring_service = "bart-imap"
+
+[folders]
+# Folders the scripts may read but must never propose moves OUT of.
+protected = ["Sent", "Sent Messages", "INBOX.Sent", "INBOX.Sent Messages", "Drafts", "INBOX.Drafts", "Rental", "INBOX.Rental"]
+# Trash folder name as the server reports it (Bart's server: INBOX.Trash).
+trash = "INBOX.Trash"
+# Hierarchy delimiter and namespace prefix are auto-detected; override only if needed.
+# prefix = "INBOX."
+
+[scan]
+# Only messages newer than this are fetched by default (ISO date). Empty = everything.
+since = "2026-10-01"
+batch_size = 200

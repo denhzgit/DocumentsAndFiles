@@ -1,0 +1,11 @@
+# Never commit mailbox contents, header caches, or environment reports.
+data/
+proposals/*.md
+proposals/*.tsv
+env-report*.txt
+config.toml
+*.eml
+*.mbox
+*.sqlite
+*.jsonl
+__pycache__/
